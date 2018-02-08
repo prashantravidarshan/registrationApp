@@ -14,5 +14,9 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
+//= require dataTables/jquery.dataTables
+//= require secret_codes
 //= require flash_message
+
+
+

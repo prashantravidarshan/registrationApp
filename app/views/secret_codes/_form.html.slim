@@ -1,0 +1,22 @@
+.container
+  = form_with(model: secret_code, local: true, class: "form-horizontal") do |form|
+    - if secret_code && secret_code.errors.any?
+      #error_explanation
+        h2
+          = pluralize(secret_code.errors.count, "error")
+          | prohibited this secret_code from being saved:
+        ul
+          - secret_code.errors.full_messages.each do |message|
+            li= message
+    .form-group
+      label.control-label.col-sm-2 for="secret_code_user_id"  Email:
+      .col-sm-10
+        = form.object.email_tag({_form: form})
+    .form-group
+      label.control-label.col-sm-2 for="secret_code_user_id"
+        = form.object.secret_code_text({_form: form} )
+      .col-sm-10
+        = form.object.select_quantity({_form: form})
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = form.submit class: "btn btn-default"

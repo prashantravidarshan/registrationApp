@@ -1,0 +1,12 @@
+h1 Secret Codes
+= link_to 'New Secret Code', new_secret_code_path
+table#secret_codes.display data-source=("#{secret_codes_url(format: "json")}") 
+  thead
+    tr
+      th Email
+      th Secret Code
+      th Created At
+      th
+      th
+      th 
+  tbody

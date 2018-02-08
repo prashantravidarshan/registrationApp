@@ -1,0 +1,29 @@
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      a.navbar-brand[href="#"]
+        | Registration App
+    ul.nav.navbar-nav
+      li.active
+        = link_to "Home", root_url
+      - if current_user && current_user.is_admin?
+        li
+          = link_to "Secrate Code", secret_codes_url
+    ul.nav.navbar-nav.navbar-right
+      li
+        a[href="#"]
+          = current_user ? current_user.email : "Guest"
+      - if current_user
+        li
+          = link_to "Account", edit_user_registration_url
+        li
+          = link_to "sign out", destroy_user_session_url, method: :delete
+      - else
+        li
+          a[href="/users/sign_up"]
+            span.glyphicon.glyphicon-user
+            |  Sign Up
+        li
+          a[href="/users/sign_in"]
+            span.glyphicon.glyphicon-log-in
+            |  Login

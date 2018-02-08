@@ -7,4 +7,7 @@ module ApplicationHelper
 	  when 'alert' then "alert alert-error"
 	  end
 	end
+	def yield_center
+		params[:controller].split("/").first == "devise" ? "text-center" : nil
+	end
 end

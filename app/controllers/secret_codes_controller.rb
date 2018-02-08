@@ -1,11 +1,14 @@
 class SecretCodesController < ApplicationController
   before_action :set_secret_code, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   load_and_authorize_resource
   # GET /secret_codes
   # GET /secret_codes.json
   def index
-    @secret_codes = SecretCode.all
+    respond_to do |format|
+      format.html
+      format.json { render json: SecretCodesDatatable.new(view_context) }
+    end
+    # @secret_codes = SecretCode.all
   end
 
   # GET /secret_codes/1
