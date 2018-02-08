@@ -15,7 +15,7 @@ class SecretCodesController < ApplicationController
 
   # GET /secret_codes/new
   def new
-    @secret_code = SecretCode.new
+    @secret_code = SecretCode.new.decorate
   end
 
   # GET /secret_codes/1/edit
@@ -32,7 +32,7 @@ class SecretCodesController < ApplicationController
         format.html { redirect_to secret_codes_url, notice: 'Secret codes was successfully created.' }
       rescue Exception => e
         puts e
-        format.html { render :new }
+        format.html { redirect_to new_secret_codes_url, error: e }
       end
     end
   end
@@ -64,7 +64,7 @@ class SecretCodesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_secret_code
-      @secret_code = SecretCode.find(params[:id])
+      @secret_code = SecretCode.where(id: params[:id]).first.decorate
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
